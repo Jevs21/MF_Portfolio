@@ -1,8 +1,10 @@
 import feedparser
+import sqlite3
 import yfinance as yf
 
 ARTICLES = []
 TRANSACTIONS = []
+
 
 class Transaction:
     def __init__(self, t_id, action, t, market, ticker, quantity, price):
@@ -16,6 +18,7 @@ class Transaction:
     
     def __repr__(self):
         return f"{self.action}: {self.ticker} {self.quantity} x ${self.price}"
+
 
 class Article:
     def __init__(self, a_id, action, t, t_str, tickers):
@@ -120,6 +123,22 @@ def complete_transactions(article):
 
 
     return transaction_list
+
+
+def update_transactions(transactions):
+    con = sqlite3.connect('database.db')
+
+    cur = con.cursor()
+
+    # Create table
+    cur.execute('''CREATE TABLE stocks
+                (date text, trans text, symbol text, qty real, price real)''')
+
+    # Insert a row of data
+    cur.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+
+    con.commit()
+    con.close()
 
 
 def main():

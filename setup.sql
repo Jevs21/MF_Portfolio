@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS transactions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    action VARCHAR(20) NOT NULL,
+    action_time VARCHAR(400) NOT NULL,
+    market VARCHAR(40) NOT NULL,
+    ticker VARCHAR(20) NOT NULL,
+    quantity INTEGER NOT NULL,
+    price FLOAT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS articles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    a_id VARCHAR(400) NOT NULL,
+    action VARCHAR(20) NOT NULL,
+    date_published VARCHAR(400) NOT NULL,
+    date_str VARCHAR(400) NOT NULL,
+    tickers VARCHAR(400) NOT NULL
+);
